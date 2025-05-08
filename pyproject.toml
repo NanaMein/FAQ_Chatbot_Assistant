@@ -4,6 +4,8 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.12"
 dependencies = [
+    "crewai>=0.119.0",
+    "crewai-tools>=0.44.0",
     "docx2txt>=0.9",
     "llama-index>=0.12.34",
     "llama-index-embeddings-huggingface>=0.5.3",
