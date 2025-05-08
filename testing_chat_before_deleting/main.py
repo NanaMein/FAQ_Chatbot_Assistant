@@ -1,4 +1,4 @@
-from llama_index_config import run_chatbot
+from testing_chat_before_deleting.llama_index_config import run_chatbot
 
 
 def run():
