@@ -1,22 +1,24 @@
 from dotenv import load_dotenv
-# from crewai import Agent, Task, Crew, Process
-# from crewai.tools import tool
+from crewai import Agent, Task, Crew, Process
+from crewai.tools import tool
 # from langchain_groq.chat_models import ChatGroq
 import os
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.llms.groq import Groq
 from llama_index.core.node_parser import SentenceSplitter
-# from llama_index.embeddings.gemini import GeminiEmbedding
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 
 load_dotenv()
 
+embed_model = HuggingFaceEmbedding()
 
 documents = SimpleDirectoryReader(input_dir="data_sources/" ).load_data()
 
 parser=SentenceSplitter(chunk_size=1000, chunk_overlap=100)
 
 node = parser.get_nodes_from_documents(documents)
-index = VectorStoreIndex(node, embed_model=llama_index_embed)
+
+index = VectorStoreIndex(node, embed_model=embed_model)
 
 
 query_engine = index.as_query_engine(llm=llama_index_llm)
