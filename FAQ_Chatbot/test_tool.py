@@ -10,24 +10,11 @@ from llama_index.core.node_parser import SentenceSplitter
 
 load_dotenv()
 
-model=os.getenv("MODEL_GROQ_LLAMA")
-modeltest=os.getenv("MODEL_GROQ_SCOUT")
-api_key=os.getenv("GROQ_API_KEY")
-api_key_gemini=os.getenv("GOOGLE_API_KEY")
-
-llama_index_llm=Groq(
-    model=modeltest, api_key=api_key,
-)
-llama_index_embed=GeminiEmbedding(
-    api_key=api_key_gemini
-)
-ai_agent_llm=ChatGroq(model=model, api_key=api_key,
-                    temperature=.3
-)
 
 documents = SimpleDirectoryReader(input_dir="data_sources/" ).load_data()
 
-parser=SentenceSplitter()
+parser=SentenceSplitter(chunk_size=1000, chunk_overlap=100)
+
 node = parser.get_nodes_from_documents(documents)
 index = VectorStoreIndex(node, embed_model=llama_index_embed)
 
