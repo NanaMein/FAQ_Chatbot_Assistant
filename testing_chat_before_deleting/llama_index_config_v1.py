@@ -48,9 +48,11 @@ retriever = index.as_retriever()
 memory = ChatMemoryBuffer.from_defaults(token_limit=3000, chat_history=[]) #chat_history=[]
 
 chat_engine = CondensePlusContextChatEngine.from_defaults(
-    llm=llm,memory=memory,
+    llm=llm,
+    memory=memory,
     system_prompt="you are a youthful and cheerful assitant",
-    retriever=retriever) #chat_history=[]
+    retriever=retriever,
+) #chat_history=[]
 
 # chat_engine = index.as_chat_engine(chat_mode=ChatMode.CONTEXT, memory=memory, llm=llm)
 # chat_engine_v1 = index.as_chat_engine(memory=memory, llm=llm, chat_mode=ChatMode.CONDENSE_PLUS_CONTEXT)

@@ -36,7 +36,7 @@ def load_background_documents() -> CondensePlusContextChatEngine:
     )
 
     return chat_engine
-
+#https://docs.google.com/document/d/1u3iXhn_9TNtFKN51heohQVtetKD1R2scvMlm5B7olgA/edit?tab=t.0
 # def run_chatbot(human_message: str) -> str:
 #     query_engine = load_background_documents()
 #
