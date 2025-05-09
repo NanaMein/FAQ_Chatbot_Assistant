@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from crewai import Agent, Task, Crew, Process
 from crewai.tools import tool
-# from langchain_groq.chat_models import ChatGroq
+from langchain_groq.chat_models import ChatGroq
 import os
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.llms.groq import Groq
