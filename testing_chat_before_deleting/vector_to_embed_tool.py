@@ -48,7 +48,7 @@ def run_please():
 
     query_engine = index.as_query_engine(llm=llm)
     print("preparing query\n****************************************")
-    test_response = query_engine.query("give something interesting about kokomi?")
+    test_response = query_engine.query("What are kokomi preferences?")
     print(test_response)
 
 

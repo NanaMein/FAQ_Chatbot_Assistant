@@ -27,7 +27,7 @@ def run_please():
         token=os.getenv('CLUSTER_TOKEN'),
         dim=384,  # Ensure this matches your embedding model's output dimension
         collection_name='kokomi_collections',
-        overwrite=True,
+        # overwrite=True,
         embedding_field="embedding"
     )
     # Load your documents

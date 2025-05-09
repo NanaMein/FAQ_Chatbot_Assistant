@@ -33,7 +33,9 @@ load_dotenv()
 
 
 embed_model = HuggingFaceEmbedding()
-llm = Groq(model=os.getenv("TEST_GROQ_SMALL", "GROQ_MODEL"), api_key=os.getenv('GROQ_API_KEY'))
+llm = Groq(model=os.getenv("TEST_GROQ_SMALL" ) or os.getenv("GROQ_MODEL"),
+           api_key=os.getenv('GROQ_API_KEY')
+           )
 
 documents = SimpleDirectoryReader(input_dir=os.getenv('DATA_DIR')).load_data()
 

@@ -1,4 +1,3 @@
-
 from llama_index.core.llms import ChatMessage
 from llama_index.core.memory import ChatMemoryBuffer
 
@@ -25,3 +24,36 @@ all_history = memory.get_all()
 
 # clear the memory
 memory.reset()
+
+
+from pymilvus import connections, Collection
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+
+
+# Connect to Zilliz
+connections.connect(
+    alias="default",
+    uri=os.getenv('CLUSTER_URI'),
+    token=os.getenv('CLUSTER_TOKEN')
+)
+
+# Load your collection
+collection = Collection("kokomi_collections")
+collection.load()
+
+# Query the first 3 records
+results = collection.query(
+    expr="",  # Empty string = no filter (get all)
+    output_fields=["text", "file_name", "embedding"],  # Fields to return
+    limit=8
+)
+
+for result in results:
+    print(f"File: {result['file_name']}")
+    print(f"Text snippet: {result['text'][:100]}...")  # First 100 chars
+    print(f"Embedding dim: {len(result['embedding'])}")  # Should be 384
+    print("----------------------------------------------------")

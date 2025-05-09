@@ -17,7 +17,7 @@ llm = Groq(model=os.getenv("TEST_GROQ_SMALL", "GROQ_MODEL"), api_key=os.getenv('
 
 # load_docx = SimpleDirectoryReader(input_dir=os.getenv('DATA_DIR')).load_data()
 
-chunk = SentenceSplitter(chunk_size=1000, chunk_overlap=100)
+
 
 
 
