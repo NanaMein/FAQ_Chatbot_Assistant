@@ -4,10 +4,10 @@ from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.vector_stores.milvus import MilvusVectorStore
 from llama_index.llms.groq import Groq
 from llama_index.core import SimpleDirectoryReader, VectorStoreIndex, StorageContext
-from llama_index.core.text_splitter import SentenceSplitter
-from llama_index.core.query_engine import BaseQueryEngine
-from llama_index.core.memory import ChatMemoryBuffer
-from llama_index.core.llms import ChatMessage
+# from llama_index.core.text_splitter import SentenceSplitter
+# from llama_index.core.query_engine import BaseQueryEngine
+# from llama_index.core.memory import ChatMemoryBuffer
+# from llama_index.core.llms import ChatMessage
 from llama_index.core import Settings
 from dotenv import load_dotenv
 import os

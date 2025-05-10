@@ -1,5 +1,7 @@
 from langchain_groq import ChatGroq
 from llama_index.llms.groq import Groq
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from llama_index.core import Settings
 from dotenv import load_dotenv
 import os
 
@@ -25,3 +27,9 @@ def llama_llm() -> Groq:
         api_key=os.getenv('GROQ_API_KEY'),
         temperature=.3,
     )
+
+def llama_embed() -> HuggingFaceEmbedding:
+    return HuggingFaceEmbedding()
+
+Settings.embed_model = llama_embed()
+Settings.llm = llama_llm()

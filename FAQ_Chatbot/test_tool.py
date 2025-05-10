@@ -1,6 +1,8 @@
+from typing import Any
+
 from dotenv import load_dotenv
 from crewai import Agent, Task, Crew, Process
-from crewai.tools import tool
+from crewai.tools import tool, BaseTool
 from langchain_groq.chat_models import ChatGroq
 import os
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
@@ -30,11 +32,27 @@ query_engine = index.as_query_engine(llm=llama_index_llm)
 
 
 
-
+@tool
 def test_tool(query: str) -> str:
     """this is a tool used to be called always to return a string"""
     return f"the query:( {query} )has successfully passed in test tool"
-testing=test_tool()
+
+class TestingTool(BaseTool):
+
+    def __init__(self):
+        super().__init__()
+        self.name = "Test"
+        self.description = "test"
+
+    def _run(self, query: str) -> str:
+        """this is a tool used to be called always to return a string"""
+        return f"the query:( {query} )has successfully passed in test tool"
+
+
+
+xtest = TestingTool()
+
+
 chat_agent = Agent(
     role="ChatBot",
     goal="""Your task is to always reply based on query ({query})
@@ -47,7 +65,7 @@ chat_agent = Agent(
                 """,
     llm=ai_agent_llm,
     verbose=True,
-    tools=[testing]
+    tools=[xtest]
 )
 task = Task(
     description="""the agent will use the tool given to it""",
